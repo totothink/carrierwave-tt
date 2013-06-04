@@ -20,7 +20,7 @@ CarrierWave.configure do |config|
   config.storage = :tt
   config.host = "http://localhost"
   config.port = 1978
-  config.domain = 'localhost'
+  config.domain = 'localhost:1978'
 end
 ```
 
@@ -48,7 +48,7 @@ end
 IMAGE_UPLOADER_ALLOW_IMAGE_VERSION_NAMES = %(320 640 800)
 class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
-    "#{model.class.to_s.underscore}/#{mounted_as}"
+    "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def default_url
