@@ -124,7 +124,7 @@ module CarrierWave
         # boolean
         #
         def store(data,headers={})
-          tt_connection.put(@path, data, {'Expect' => '', 'Mkdir' => 'true'}.merge(headers))
+          tt_connection.put(@path, data,headers)
           true
         end
 
@@ -133,7 +133,7 @@ module CarrierWave
           def headers
             @headers ||= begin
               tt_connection.get(@path).headers
-            rescue Excon::Errors::NotFound # Don't die, just return no headers
+            rescue
               {}
             end
           end
